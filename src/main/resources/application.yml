@@ -3,3 +3,9 @@ datasource:
   url: jdbc:mysql://localhost:8080/seunghwan-db
   username: root
   password: 1234
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy:
+        ant_path_matcher

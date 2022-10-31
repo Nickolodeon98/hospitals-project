@@ -1,0 +1,5 @@
+datasource:
+  driver-class-name : com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://localhost:8080/seunghwan-db
+  username: root
+  password: 1234

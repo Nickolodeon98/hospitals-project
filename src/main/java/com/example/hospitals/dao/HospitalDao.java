@@ -78,4 +78,9 @@ public class HospitalDao {
 
         return queryHospital.getHospitalName();
     }
+
+    public int getCount() {
+        String sql = "SELECT count(*) FROM nation_wide_hospitals";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
 }

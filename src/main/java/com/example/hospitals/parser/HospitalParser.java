@@ -12,11 +12,10 @@ public class HospitalParser implements Parser<Hospital>{
     public Hospital parse(String line) {
         String[] row = line.split("\",\"");
 
-        System.out.println(Arrays.toString(row));
 
         Hospital hospital = new Hospital();
-
-        hospital.setId(Integer.parseInt(row[0].replace("\"", "")));
+        row[0] = row[0].replaceAll("\"", "");
+        hospital.setId(Integer.parseInt(row[0]));
         hospital.setOpenServiceName(row[1]);
         hospital.setOpenLocalGovernmentCode(Integer.parseInt(row[3]));
         hospital.setManagementNumber(row[4]);
@@ -32,8 +31,11 @@ public class HospitalParser implements Parser<Hospital>{
         hospital.setHealthcareProviderCount(Integer.parseInt(row[29]));
         hospital.setPatientRoomCount(Integer.parseInt(row[30]));
         hospital.setTotalNumberOfBeds(Integer.parseInt(row[31]));
-        hospital.setTotalAreaSize(Float.parseFloat(row[32].replace("\"", "")));
+        hospital.setTotalAreaSize(Float.parseFloat(row[32]));
 
+        row[row.length-1] = row[row.length-1].replaceAll("\"", "");
+
+        System.out.println(Arrays.toString(row));
         return hospital;
 
     }

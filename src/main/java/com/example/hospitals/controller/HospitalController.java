@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/hospital/v1/api")
 public class HospitalController {
@@ -16,7 +18,14 @@ public class HospitalController {
     }
 
     @PostMapping("/info")
-    public void insertInfo() {
+    public void insertInfo() throws IOException {
         hospitalDao.add();
     }
+
+    @PostMapping("/blank")
+    public void deleteInfo() {
+        hospitalDao.delete();
+    }
+
+
 }

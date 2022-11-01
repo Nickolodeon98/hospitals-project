@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest // @ExtendWith 와 @ConfigurationContext 를 대체한다.
 class HospitalParserTest {
     String line1 = "\"1\",\"의원\",\"01_01_02_P\",\"3620000\",\"PHMA119993620020041100004\",\"19990612\",\"\",\"01\",\"영업/정상\",\"13\",\"영업중\",\"\",\"\",\"\",\"\",\"062-515-2875\",\"\",\"500881\",\"광주광역시 북구 풍향동 565번지 4호 3층\",\"광주광역시 북구 동문대로 24, 3층 (풍향동)\",\"61205\",\"효치과의원\",\"20211115113642\",\"U\",\"2021-11-17 02:40:00.0\",\"치과의원\",\"192630.735112\",\"185314.617632\",\"치과의원\",\"1\",\"0\",\"0\",\"52.29\",\"401\",\"치과\",\"\",\"\",\"\",\"0\",\"0\",\"\",\"\",\"0\",\"\"";
-
+    String line2 = "\"2\",\"의원\",\"01_01_02_P\",\"3620000\",\"PHMA119993620020041100005\",\"19990707\",\"\",\"01\",\"영업/정상\",\"13\",\"영업중\",\"\",\"\",\"\",\"\",\"062-574-2802\",\"\",\"500867\",\"광주광역시 북구 일곡동 821번지 1호 2층\",\"광주광역시 북구 설죽로 518, 2층 (일곡동)\",\"61041\",\"일곡부부치과의원\",\"20170905183213\",\"I\",\"2018-08-31 23:59:59.0\",\"치과의원\",\"190646.777107\",\"189589.427851\",\"치과의원\",\"2\",\"0\",\"0\",\"200\",\"401\",\"치과\",\"\",\"\",\"\",\"0\",\"0\",\"\",\"\",\"0\",\"\"";
     @Autowired
     ReadLineContext<Hospital> hospitalReadLineContext; // hospitalReadLineContext 라는 이름을 가진 메서드를 @Configuration 클래스의 @Bean 메서드 중에서 찾는다.
 
     @Test
     void name() throws IOException {
         // 이러한 파일 명은 서버 환경에서 실행 시 문제가 될 수 있지만, 코드 자체에 포함시키기에는 부담스럽다.
-        String filename = "C:\\LikeLion\\2022.10\\ing\\spring-boot\\fulldata_01_01_02_P_의원3.csv";
+        String filename = "C:\\LikeLion\\2022.10\\ing\\spring-boot\\fulldata_01_01_02_P_의원 (3).csv";
         List<Hospital> hospitalList = hospitalReadLineContext.readLines(filename);
         System.out.println(hospitalList.size());
         assertTrue(hospitalList.size() > 10000);

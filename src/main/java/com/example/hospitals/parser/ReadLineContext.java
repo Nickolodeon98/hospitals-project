@@ -21,7 +21,7 @@ public class ReadLineContext<T> {
         String str = "";
         BufferedReader reader;
         try {
-            reader = Files.newBufferedReader(Paths.get(filename), StandardCharsets.UTF_16);
+            reader = Files.newBufferedReader(Paths.get(filename));
             reader.readLine();
             while ((str = reader.readLine()) != null) try {
                 this.list.add(parser.parse(str));

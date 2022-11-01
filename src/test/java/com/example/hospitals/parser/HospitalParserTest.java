@@ -35,15 +35,33 @@ class HospitalParserTest {
     @Test
     @DisplayName("Select")
     void findTest() throws IOException {
-        String name = hospitalDao.findById("2");
-        assertEquals("일곡부부치과의원", name);
+        Hospital foundHospital = hospitalDao.findById("2");
+        assertEquals("일곡부부치과의원", foundHospital.getHospitalName());
     }
 
     @Test
     @DisplayName("Insert")
     void add() throws IOException {
         HospitalParser hospitalParser = new HospitalParser();
-        hospitalDao.add(hospitalParser.parse(line1));
+        Hospital toCompare = hospitalParser.parse(line1);
+        hospitalDao.add(toCompare);
+        Hospital foundHospital = hospitalDao.findById("1");
+        assertEquals(toCompare.getId(), foundHospital.getId());
+        assertEquals(toCompare.getOpenServiceName(), foundHospital.getOpenServiceName());
+        assertEquals(toCompare.getOpenLocalGovernmentCode(), foundHospital.getOpenLocalGovernmentCode());
+        assertEquals(toCompare.getManagementNumber(), foundHospital.getManagementNumber());
+        assertTrue(toCompare.getLicenseDate().isEqual(foundHospital.getLicenseDate()));
+        assertEquals(toCompare.getBusinessStatus(), foundHospital.getBusinessStatus());
+        assertEquals(toCompare.getBusinessStatusCode(), foundHospital.getBusinessStatusCode());
+        assertEquals(toCompare.getPhone(), foundHospital.getPhone());
+        assertEquals(toCompare.getFullAddress(), foundHospital.getFullAddress());
+        assertEquals(toCompare.getRoadNameAddress(), foundHospital.getRoadNameAddress());
+        assertEquals(toCompare.getHospitalName(), foundHospital.getHospitalName());
+        assertEquals(toCompare.getBusinessTypeName(), foundHospital.getBusinessTypeName());
+        assertEquals(toCompare.getHealthcareProviderCount(), foundHospital.getHealthcareProviderCount());
+        assertEquals(toCompare.getPatientRoomCount(), foundHospital.getPatientRoomCount());
+        assertEquals(toCompare.getTotalNumberOfBeds(), foundHospital.getTotalNumberOfBeds());
+        assertEquals(toCompare.getTotalAreaSize(), foundHospital.getTotalAreaSize());
     }
 
     @Test

@@ -17,10 +17,10 @@ public class HospitalController {
         this.hospitalDao = hospitalDao;
     }
 
-    @PostMapping("/info")
-    public void insertInfo() throws IOException {
-        hospitalDao.add();
-    }
+//    @PostMapping("/info")
+//    public void insertInfo() throws IOException {
+//        hospitalDao.add();
+//    }
 
     @PostMapping("/blank")
     public void deleteInfo() {

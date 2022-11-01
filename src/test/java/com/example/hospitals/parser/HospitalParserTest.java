@@ -1,6 +1,8 @@
 package com.example.hospitals.parser;
 
+import com.example.hospitals.dao.HospitalDao;
 import com.example.hospitals.domain.Hospital;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,33 @@ class HospitalParserTest {
     @Autowired
     ReadLineContext<Hospital> hospitalReadLineContext; // hospitalReadLineContext 라는 이름을 가진 메서드를 @Configuration 클래스의 @Bean 메서드 중에서 찾는다.
 
+    @Autowired
+    HospitalDao hospitalDao;
+
+    @BeforeEach
+    void setUp() {
+        hospitalDao.delete();
+    }
+
     @Test
+    @DisplayName("Select")
+    void findTest() throws IOException {
+        HospitalParser hospitalParser = new HospitalParser();
+        hospitalDao.add(hospitalParser.parse(line1));
+        String name = hospitalDao.findById("1");
+        assertEquals("효치과의원", name);
+    }
+
+    @Test
+    @DisplayName("Insert")
+    void add() throws IOException {
+        hospitalDao.delete();
+        HospitalParser hospitalParser = new HospitalParser();
+        hospitalDao.add(hospitalParser.parse(line1));
+    }
+
+    @Test
+    @DisplayName("Number of rows")
     void name() throws IOException {
         // 이러한 파일 명은 서버 환경에서 실행 시 문제가 될 수 있지만, 코드 자체에 포함시키기에는 부담스럽다.
         String filename = "C:\\LikeLion\\2022.10\\ing\\spring-boot\\fulldata_01_01_02_P_의원 (3).csv";
@@ -28,7 +56,7 @@ class HospitalParserTest {
         assertTrue(hospitalList.size() > 100000);
     }
 
-    @DisplayName("parse test")
+    @DisplayName("Parse test")
     @Test
     void convertToHospital() {
         HospitalParser hospitalParser = new HospitalParser();

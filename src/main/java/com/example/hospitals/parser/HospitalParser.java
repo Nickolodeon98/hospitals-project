@@ -35,7 +35,6 @@ public class HospitalParser implements Parser<Hospital>{
 
         row[row.length-1] = row[row.length-1].replaceAll("\"", "");
 
-        System.out.println(Arrays.toString(row));
         return hospital;
 
     }

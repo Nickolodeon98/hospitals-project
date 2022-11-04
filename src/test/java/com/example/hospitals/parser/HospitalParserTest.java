@@ -34,78 +34,78 @@ class HospitalParserTest {
         hospitalDao.add(hospitalParser.parse(line3));
     }
 
-    @Test
-    @DisplayName("Find with id")
-    void findTest() throws IOException {
-        Hospital foundHospital = hospitalDao.findById("2");
-        assertEquals("일곡부부치과의원", foundHospital.getHospitalName());
-    }
+//    @Test
+//    @DisplayName("Find with id")
+//    void findTest() throws IOException {
+//        Hospital foundHospital = hospitalDao.findById("2");
+//        assertEquals("일곡부부치과의원", foundHospital.getHospitalName());
+//    }
+//
+//    @Test
+//    @DisplayName("Add and get")
+//    void add() throws IOException {
+//        HospitalParser hospitalParser = new HospitalParser();
+//        Hospital toCompare = hospitalParser.parse(line1);
+//        hospitalDao.add(toCompare);
+//        Hospital foundHospital = hospitalDao.findById("1");
+//        assertEquals(toCompare.getId(), foundHospital.getId());
+//        assertEquals(toCompare.getOpenServiceName(), foundHospital.getOpenServiceName());
+//        assertEquals(toCompare.getOpenLocalGovernmentCode(), foundHospital.getOpenLocalGovernmentCode());
+//        assertEquals(toCompare.getManagementNumber(), foundHospital.getManagementNumber());
+//        assertTrue(toCompare.getLicenseDate().isEqual(foundHospital.getLicenseDate()));
+//        assertEquals(toCompare.getBusinessStatus(), foundHospital.getBusinessStatus());
+//        assertEquals(toCompare.getBusinessStatusCode(), foundHospital.getBusinessStatusCode());
+//        assertEquals(toCompare.getPhone(), foundHospital.getPhone());
+//        assertEquals(toCompare.getFullAddress(), foundHospital.getFullAddress());
+//        assertEquals(toCompare.getRoadNameAddress(), foundHospital.getRoadNameAddress());
+//        assertEquals(toCompare.getHospitalName(), foundHospital.getHospitalName());
+//        assertEquals(toCompare.getBusinessTypeName(), foundHospital.getBusinessTypeName());
+//        assertEquals(toCompare.getHealthcareProviderCount(), foundHospital.getHealthcareProviderCount());
+//        assertEquals(toCompare.getPatientRoomCount(), foundHospital.getPatientRoomCount());
+//        assertEquals(toCompare.getTotalNumberOfBeds(), foundHospital.getTotalNumberOfBeds());
+//        assertEquals(toCompare.getTotalAreaSize(), foundHospital.getTotalAreaSize());
+//    }
 
-    @Test
-    @DisplayName("Add and get")
-    void add() throws IOException {
-        HospitalParser hospitalParser = new HospitalParser();
-        Hospital toCompare = hospitalParser.parse(line1);
-        hospitalDao.add(toCompare);
-        Hospital foundHospital = hospitalDao.findById("1");
-        assertEquals(toCompare.getId(), foundHospital.getId());
-        assertEquals(toCompare.getOpenServiceName(), foundHospital.getOpenServiceName());
-        assertEquals(toCompare.getOpenLocalGovernmentCode(), foundHospital.getOpenLocalGovernmentCode());
-        assertEquals(toCompare.getManagementNumber(), foundHospital.getManagementNumber());
-        assertTrue(toCompare.getLicenseDate().isEqual(foundHospital.getLicenseDate()));
-        assertEquals(toCompare.getBusinessStatus(), foundHospital.getBusinessStatus());
-        assertEquals(toCompare.getBusinessStatusCode(), foundHospital.getBusinessStatusCode());
-        assertEquals(toCompare.getPhone(), foundHospital.getPhone());
-        assertEquals(toCompare.getFullAddress(), foundHospital.getFullAddress());
-        assertEquals(toCompare.getRoadNameAddress(), foundHospital.getRoadNameAddress());
-        assertEquals(toCompare.getHospitalName(), foundHospital.getHospitalName());
-        assertEquals(toCompare.getBusinessTypeName(), foundHospital.getBusinessTypeName());
-        assertEquals(toCompare.getHealthcareProviderCount(), foundHospital.getHealthcareProviderCount());
-        assertEquals(toCompare.getPatientRoomCount(), foundHospital.getPatientRoomCount());
-        assertEquals(toCompare.getTotalNumberOfBeds(), foundHospital.getTotalNumberOfBeds());
-        assertEquals(toCompare.getTotalAreaSize(), foundHospital.getTotalAreaSize());
-    }
-
-    @Test
-    @DisplayName("Count everything")
-    void countAll() {
-        assertEquals(2, hospitalDao.getCount());
-    }
-
-    @Test
-    @DisplayName("Number of rows")
-    void name() throws IOException {
-        // 이러한 파일 명은 서버 환경에서 실행 시 문제가 될 수 있지만, 코드 자체에 포함시키기에는 부담스럽다.
-        String filename = "C:\\LikeLion\\2022.10\\ing\\spring-boot\\fulldata_01_01_02_P_의원 (3).csv";
-        List<Hospital> hospitalList = hospitalReadLineContext.readLines(filename);
-        System.out.println(hospitalList.size());
-        assertTrue(hospitalList.size() > 10000);
-        assertTrue(hospitalList.size() > 100000);
-    }
-
-    @DisplayName("Parse test")
-    @Test
-    void convertToHospital() {
-        HospitalParser hospitalParser = new HospitalParser();
-        Hospital hospital = hospitalParser.parse(line1);
-
-        assertEquals(1, hospital.getId()); // col:0
-        assertEquals("의원", hospital.getOpenServiceName()); // col:1
-        assertEquals(3620000, hospital.getOpenLocalGovernmentCode()); // col:3
-        assertEquals("PHMA119993620020041100004",hospital.getManagementNumber()); // col:4
-        assertEquals(LocalDateTime.of(1999, 6, 12, 0, 0, 0), hospital.getLicenseDate()); //19990612 //col:5
-        assertEquals(1, hospital.getBusinessStatus()); //col:7
-        assertEquals(13, hospital.getBusinessStatusCode());//col:9
-        assertEquals("062-515-2875", hospital.getPhone());//col:14
-        assertEquals("광주광역시 북구 풍향동 565번지 4호 3층", hospital.getFullAddress()); //col:18
-        assertEquals("광주광역시 북구 동문대로 24, 3층 (풍향동)", hospital.getRoadNameAddress());//col:19
-        assertEquals("효치과의원", hospital.getHospitalName());//col:21
-        assertEquals("치과의원", hospital.getBusinessTypeName());//col:25
-        assertEquals(1, hospital.getHealthcareProviderCount()); //col:30
-        assertEquals(0, hospital.getPatientRoomCount()); //col:31
-        assertEquals(0, hospital.getTotalNumberOfBeds()); //col:32
-        assertEquals(52.29f, hospital.getTotalAreaSize()); //col:33
-    }
+//    @Test
+//    @DisplayName("Count everything")
+//    void countAll() {
+//        assertEquals(2, hospitalDao.getCount());
+//    }
+//
+//    @Test
+//    @DisplayName("Number of rows")
+//    void name() throws IOException {
+//        // 이러한 파일 명은 서버 환경에서 실행 시 문제가 될 수 있지만, 코드 자체에 포함시키기에는 부담스럽다.
+//        String filename = "C:\\LikeLion\\2022.10\\ing\\spring-boot\\fulldata_01_01_02_P_의원 (3).csv";
+//        List<Hospital> hospitalList = hospitalReadLineContext.readLines(filename);
+//        System.out.println(hospitalList.size());
+//        assertTrue(hospitalList.size() > 10000);
+//        assertTrue(hospitalList.size() > 100000);
+//    }
+//
+//    @DisplayName("Parse test")
+//    @Test
+//    void convertToHospital() {
+//        HospitalParser hospitalParser = new HospitalParser();
+//        Hospital hospital = hospitalParser.parse(line1);
+//
+//        assertEquals(1, hospital.getId()); // col:0
+//        assertEquals("의원", hospital.getOpenServiceName()); // col:1
+//        assertEquals(3620000, hospital.getOpenLocalGovernmentCode()); // col:3
+//        assertEquals("PHMA119993620020041100004",hospital.getManagementNumber()); // col:4
+//        assertEquals(LocalDateTime.of(1999, 6, 12, 0, 0, 0), hospital.getLicenseDate()); //19990612 //col:5
+//        assertEquals(1, hospital.getBusinessStatus()); //col:7
+//        assertEquals(13, hospital.getBusinessStatusCode());//col:9
+//        assertEquals("062-515-2875", hospital.getPhone());//col:14
+//        assertEquals("광주광역시 북구 풍향동 565번지 4호 3층", hospital.getFullAddress()); //col:18
+//        assertEquals("광주광역시 북구 동문대로 24, 3층 (풍향동)", hospital.getRoadNameAddress());//col:19
+//        assertEquals("효치과의원", hospital.getHospitalName());//col:21
+//        assertEquals("치과의원", hospital.getBusinessTypeName());//col:25
+//        assertEquals(1, hospital.getHealthcareProviderCount()); //col:30
+//        assertEquals(0, hospital.getPatientRoomCount()); //col:31
+//        assertEquals(0, hospital.getTotalNumberOfBeds()); //col:32
+//        assertEquals(52.29f, hospital.getTotalAreaSize()); //col:33
+//    }
 
     /* 이렇게 하면 안 되는 이유: 서버 환경에서 빌드 시 때마다 테스트를 실행한다. 매번 11만건의 항목을 추가하는 셈이다.*/
 //    @DisplayName("Add all files")
@@ -128,9 +128,9 @@ class HospitalParserTest {
 
         String filename = "C:\\\\LikeLion\\\\2022.10\\\\ing\\\\spring-boot\\\\fulldata_01_01_02_P_의원 (3).csv";
         int countNum = hospitalService.insertLargeVolumeHospitalData(filename);
+        System.out.printf("총 %d개의 항목이 파싱되었습니다.\n", countNum);
 
         assertTrue(countNum > 10000);
         assertTrue(countNum > 100000);
-        System.out.printf("총 %d개의 항목이 파싱되었습니다.");
     }
 }

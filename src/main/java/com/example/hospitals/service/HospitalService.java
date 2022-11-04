@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HospitalService {
@@ -26,18 +27,24 @@ public class HospitalService {
         List<Hospital> hospitalList = null;
         try {
             hospitalList = hospitalReadLineContext.readLines(filename);
-            for (Hospital hospital : hospitalList) {
-                try {
-                    hospitalDao.add(hospital);
-                    cnt++;
-                } catch (IOException e) {
-                    System.out.println("파일 내용 %s 에 문제가 있습니다.");
-                    throw new RuntimeException(e);
-                }
-            }
+            /* 병렬 방식으로 리스트 내의 모든 문제가 없는 항목들을 DB 에 인서트한다. */
+            hospitalList
+                    .stream()
+                    .parallel()
+                    .forEach(hospital -> {
+                        try {
+                            this.hospitalDao.add(hospital);
+                        } catch (IOException ex) {
+                            System.out.printf("파일 아이디 %d 에 문제가 있습니다.\n", hospital.getId());
+                            throw new RuntimeException(ex);
+                        }
+                    });
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        if (!Optional.of(hospitalList).isEmpty()) cnt = hospitalList.size();
+
         return cnt;
     }
 
